@@ -62,6 +62,9 @@ public:
 	UFUNCTION()
 	void destroyMe();
 
+	UFUNCTION()
+	void setMud(bool mud);
+
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player")
@@ -78,5 +81,11 @@ protected:
 	UPROPERTY()
 	int32 _Weight;
 	UPROPERTY()
-	float _Cooldown;	
+	float _Cooldown;
+
+	UPROPERTY()
+	bool _Mud;
+
+	UPROPERTY()
+	int32 _Speed;
 };

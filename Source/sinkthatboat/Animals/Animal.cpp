@@ -25,6 +25,20 @@ void AAnimal::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	//Change the speed if we're in the mud
+	setSpeed(_Mud ? _Speed / 2 : _Speed);
+
+	//Check if we're in the mud
+	if (_Mud) {
+		TArray<Actors*> Actors;
+		GetOverlappingActors(Actors);
+
+		for (auto& Actor : Actors) {
+			AMud *mud = Cast<AMud>(Actor);
+			_Mud = mud;
+		}
+	}
+
 }
 
 // Called to bind functionality to input
@@ -63,6 +77,7 @@ void AAnimal::stopWalking() {
 //Set the animal's speed
 void AAnimal::setSpeed(int32 Speed) {
 	GetCharacterMovement()->MaxWalkSpeed = Speed * 70;
+	_Speed = Speed;
 }
 
 //Destroy the animal
@@ -78,7 +93,10 @@ void AAnimal::destroyMe() {
 		Destroy();
 }
 
+
+//Accessors
 int32 AAnimal::getWeight()   const { return _Weight;   }
 float AAnimal::getCooldown() const { return _Cooldown; }
 void  AAnimal::setWeight(int32 Weight)     { _Weight   = Weight; }
 void  AAnimal::setCooldown(float Cooldown) { _Cooldown = Cooldown; }
+void  AAnimal::setMud(bool mud)			   { _Mud	   = mud; }

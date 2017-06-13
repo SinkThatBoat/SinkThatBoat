@@ -7,7 +7,7 @@
 
 
 /**
- * 
+ *	Mud class
  */
 UCLASS()
 class SINKTHATBOAT_API AMud : public ATrap
@@ -18,5 +18,15 @@ class SINKTHATBOAT_API AMud : public ATrap
 public:
 	AMud();
 
-	
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+public:
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+private:
+	UFUNCTION()
+	void minimize();
 };

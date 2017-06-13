@@ -13,7 +13,7 @@
 **/
 
 //Server
-#define SERVER_IP			"127.0.0.1"
+#define SERVER_IP			"172.16.40.38"
 
 //Arks
 #define ARK_LIFE			25000

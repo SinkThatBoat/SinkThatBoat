@@ -2,18 +2,18 @@
 
 #pragma once
 
+
 #include "Trap/Trap.h"
 #include "Mud.generated.h"
 
 
 /**
- *	Mud class
- */
+*	Mud class
+*/
 UCLASS()
 class SINKTHATBOAT_API AMud : public ATrap
 {
 	GENERATED_BODY()
-
 
 public:
 	AMud();

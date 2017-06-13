@@ -2,14 +2,14 @@
 
 #include "sinkthatboat.h"
 #include "Animal.h"
-
+#include "../Trap/Mud.h"
 
 // Sets default values
 AAnimal::AAnimal()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	
+
 	_hasDamaged = false;
 }
 
@@ -17,7 +17,7 @@ AAnimal::AAnimal()
 void AAnimal::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
@@ -30,12 +30,13 @@ void AAnimal::Tick(float DeltaTime)
 
 	//Check if we're in the mud
 	if (_Mud) {
-		TArray<Actors*> Actors;
+		TArray<AActor*> Actors;
 		GetOverlappingActors(Actors);
 
 		for (auto& Actor : Actors) {
 			AMud *mud = Cast<AMud>(Actor);
-			_Mud = mud;
+			if (mud)
+				_Mud = false;
 		}
 	}
 
@@ -50,7 +51,7 @@ void AAnimal::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 
 // Return if the animal is dead
-bool AAnimal::isDead() const{
+bool AAnimal::isDead() const {
 	return _isDead;
 }
 
@@ -59,12 +60,12 @@ void AAnimal::kill() {
 	_hasDamaged = true;
 	stopWalking();
 	_isDead = true;
-	
+
 	UWorld* World = GetWorld();
 
 	if (World) {
 		FTimerHandle t;
-		World->GetTimerManager().SetTimer(t, this , &AAnimal::destroyMe, 0.1f, true);
+		World->GetTimerManager().SetTimer(t, this, &AAnimal::destroyMe, 0.1f, true);
 	}
 }
 
@@ -95,8 +96,8 @@ void AAnimal::destroyMe() {
 
 
 //Accessors
-int32 AAnimal::getWeight()   const { return _Weight;   }
+int32 AAnimal::getWeight()   const { return _Weight; }
 float AAnimal::getCooldown() const { return _Cooldown; }
-void  AAnimal::setWeight(int32 Weight)     { _Weight   = Weight; }
+void  AAnimal::setWeight(int32 Weight) { _Weight = Weight; }
 void  AAnimal::setCooldown(float Cooldown) { _Cooldown = Cooldown; }
-void  AAnimal::setMud(bool mud)			   { _Mud	   = mud; }
+void  AAnimal::setMud(bool mud) { _Mud = mud; }

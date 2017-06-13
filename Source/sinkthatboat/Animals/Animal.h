@@ -7,6 +7,9 @@
 #include "GameFramework/Character.h"
 #include "Animal.generated.h"
 
+
+class AMud;
+
 UCLASS()
 class SINKTHATBOAT_API AAnimal : public ACharacter
 {
@@ -20,7 +23,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -29,63 +32,63 @@ public:
 
 	//If the animal is dead
 	UFUNCTION(BlueprintCallable)
-	bool isDead() const;
+		bool isDead() const;
 
 	//Kill the animal
 	UFUNCTION(BlueprintCallable)
-	void kill();
+		void kill();
 
 	//Stop the movement of the animal
 	UFUNCTION(BlueprintCallable)
-	void stopWalking();
+		void stopWalking();
 
 	//Set the walking's speed
 	UFUNCTION(BlueprintCallable)
-	void setSpeed(const int32 Speed);
+		void setSpeed(const int32 Speed);
 
 	//Get weight
 	UFUNCTION(BlueprintCallable)
-	int32 getWeight() const;
+		int32 getWeight() const;
 
 	//Set weight
 	UFUNCTION(BlueprintCallable)
-	void setWeight(const int32 Weight);
+		void setWeight(const int32 Weight);
 
 	//Get Cooldown
 	UFUNCTION(BlueprintCallable)
-	float getCooldown() const;
+		float getCooldown() const;
 
 	//Set Cooldown
 	UFUNCTION(BlueprintCallable)
-	void setCooldown(const float Cooldown);
+		void setCooldown(const float Cooldown);
 
 	UFUNCTION()
-	void destroyMe();
+		void destroyMe();
 
 	UFUNCTION()
-	void setMud(bool mud);
+		void setMud(bool mud);
 
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player")
-	EPlayerEnum _OwningPlayer;
+		EPlayerEnum _OwningPlayer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player")
-	AArk *_Target;
+		AArk *_Target;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool _hasDamaged;
+		bool _hasDamaged;
 
 	UPROPERTY()
-	bool _isDead;
+		bool _isDead;
 	UPROPERTY()
-	int32 _Weight;
+		int32 _Weight;
 	UPROPERTY()
-	float _Cooldown;
+		float _Cooldown;
 
 	UPROPERTY()
-	bool _Mud;
+		bool _Mud;
 
 	UPROPERTY()
-	int32 _Speed;
+		int32 _Speed;
 };

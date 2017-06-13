@@ -4,10 +4,8 @@
 #include "Mud.h"
 
 
-
-
 AMud::AMud() {
-	
+
 }
 
 // Called when the game starts or when spawned
@@ -19,7 +17,7 @@ void AMud::BeginPlay() {
 	if (World) {
 		// Set timer to reduce the size of the mud
 		FTimerHandle t;
-		World->GetTimerManager().SetTimer(t, this, AMud::minimize, 0.1f, true);
+		World->GetTimerManager().SetTimer(t, this, &AMud::minimize, 0.1f, true);
 	}
 
 }
@@ -33,8 +31,8 @@ void AMud::Tick(float DeltaTime) {
 	GetOverlappingActors(Actors);
 	for (auto& Actor : Actors) {
 		AAnimal *Animal = Cast<AAnimal>(Actor);
-		if (AAnimal) {
-			AAnimal->setMud(true);
+		if (Animal) {
+			Animal->setMud(true);
 		}
 	}
 
@@ -47,7 +45,7 @@ void AMud::minimize() {
 	v.X /= 1.01;
 	v.Y /= 1.01;
 	v.Z /= 1.01;
-	
+
 	if (v.X < 0.1)
 		Destroy();
 }

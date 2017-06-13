@@ -8,7 +8,8 @@
 #include "Trap.generated.h"
 
 UCLASS()
-class SINKTHATBOAT_API ATrap : public AActor {
+class SINKTHATBOAT_API ATrap : public AActor
+{
 	GENERATED_BODY()
 	
 public:	
@@ -34,7 +35,5 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USkeletalMeshComponent *_Mesh;
-
-
 	
 };

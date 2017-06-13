@@ -36,7 +36,7 @@ void AAnimal::Tick(float DeltaTime)
 		for (auto& Actor : Actors) {
 			AMud *mud = Cast<AMud>(Actor);
 			if (mud)
-				_Mud = false;
+				_Mud = true;
 		}
 	}
 
